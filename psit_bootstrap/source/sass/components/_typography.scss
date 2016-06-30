@@ -1,0 +1,124 @@
+/* ---------------------------------------------------------- [ Fonts ] */
+
+body,
+input,
+textarea,
+.page-title span,
+.pingback a.url {
+  font-family: $font-family-serif;
+}
+
+#site-title,
+.page-title,
+#content .entry-title,
+#entry-author-info h2,
+#comments-title,
+#reply-title,
+.widget-title,
+input[type="text"],
+input[type=submit],
+textarea {
+  font-family: $font-family-sans-serif;
+}
+
+pre {
+  font-family: "Courier 10 Pitch", Courier, monospace;
+}
+
+code {
+  font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+
+/* ------------------------------------------------ [ Global Elements ] */
+
+body,
+input,
+textarea {
+  font-size: 0.85em;
+  line-height: 1.75em;
+  color: #444;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-serif
+}
+
+hr {
+  background-color: #E7E7E7;
+  border: 0;
+  height: 1px;
+  margin-bottom: 18px;
+  clear: both;
+}
+
+p {
+  margin-bottom: 18px;
+}
+
+ul {
+  list-style: square;
+  margin: 0 0 18px 1.5em;
+}
+
+ol {
+  list-style: decimal;
+  margin: 0 0 18px 1.5em;
+}
+
+ol ol {
+  list-style: upper-alpha;
+}
+
+ol ol ol {
+  list-style: lower-roman;
+}
+
+ol ol ol ol {
+  list-style: lower-alpha;
+}
+
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  margin: 0 0 24px 0;
+}
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-bottom: 18px;
+}
+
+h1.page-header {
+  border-bottom: 1px solid #e2e2e2;
+  padding-bottom: 12px;
+  margin-bottom: 8px;
+  letter-spacing: -1px;
+  color: #000;
+  font-size: 26px;
+  line-height: 1.3em;
+  font-weight: bold;
+  font-family: $font-family-sans-serif;
+}
+
+.region-content {
+  font-size: $font-size-base;
+  h2 {
+    font-family: Arial,sans-serif;
+    font-size: 19px;
+    font-weight: bold;
+    padding: 28px 0 14px 0;
+  }
+  h3 {
+    font-size: 17px;
+    font-style: italic;
+    padding: 28px 0 14px 0;
+  }
+}

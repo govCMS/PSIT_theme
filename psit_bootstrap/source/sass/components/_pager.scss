@@ -1,0 +1,14 @@
+.pager {
+  .pager-previous,
+  .pager-next {
+    margin: 0;
+    a {
+      display: inline-block;
+      padding: 5px 10px;
+      color: #555;
+      text-shadow: #fff 1px 1px 0;
+      background-color: #cccccc;
+      border-bottom: 1px solid #999999;
+    }
+  }
+}

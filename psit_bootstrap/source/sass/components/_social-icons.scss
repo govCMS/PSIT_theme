@@ -1,0 +1,65 @@
+#block-bean-psit-share-it-bean {
+  .content {
+    float: right;
+    a {
+      background-image: url('../../images/social-network-sprite.png');
+      width: 32px;
+      height: 32px;
+      float: left;
+      margin: 10px 0 0  5px;
+      text-indent: -100000px;
+    }
+  }
+  .twitter {
+    background-position: 0 0;
+    @include rotate(.9);
+    @include transition-timing-function(ease-out);
+    @include transition-duration(500ms);
+    &:hover {
+      background-position: 0 -32px;
+      @include rotate(1);
+      @include transition-timing-function(ease-out);
+      @include transition-duration(500ms);
+    }
+  }
+
+  .facebook {
+    background-position: -32px 0px;
+    @include rotate(.9);
+    @include transition-timing-function(ease-out);
+    @include transition-duration(500ms);
+    &:hover {
+      background-position: -32px -32px;
+      @include rotate(1);
+      @include transition-timing-function(ease-out);
+      @include transition-duration(500ms);
+    }
+  }
+  .email {
+    background-position: -64px 0px;
+    @include rotate(.9);
+    @include transition-timing-function(ease-out);
+    @include transition-duration(500ms);
+    &:hover {
+      background-position: -64px -32px;
+      @include rotate(1);
+      @include transition-timing-function(ease-out);
+      @include transition-duration(500ms);
+    }
+  }
+  .rss {
+    background-position: -96px 0;
+    @include rotate(.9);
+    @include transition-timing-function(ease-out);
+    -webkit-transition-duration: 500ms;
+    &:hover {
+      background-position: -96px -32px;
+      @include rotate(1);
+      @include transition-timing-function(ease-out);
+      -webkit-transition-duration: 500ms;
+    }
+  }
+}
+
+
+

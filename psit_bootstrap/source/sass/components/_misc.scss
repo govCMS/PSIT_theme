@@ -1,0 +1,76 @@
+ul.tabs--primary {
+  width: 100%;
+  background-color: #ccc;
+  li {
+    display: inline-block;
+    padding: 5px 10px;
+  }
+}
+
+#block-search-form {
+  .input-group-btn {
+    display: none;
+  }
+}
+
+.front {
+  .region-help {
+    float: left;
+  }
+}
+
+#admin-menu {
+  z-index: 9999;
+}
+
+.front {
+  #breadcrumbWrap {
+    display: none;
+  }
+}
+
+.front {
+  h1.page-header {
+    display: none;
+  }
+}
+
+#comment-body-add-more-wrapper {
+  .panel-body {
+    display: none;
+  }
+}
+
+ul.pager {
+  list-style: none;
+  list-style-type: none;
+  @include clearfix;
+  margin: 10px 0;
+  li {
+    display: inline-block;
+    margin: 0 10px;
+    &.pager-previous {
+      float: left;
+    }
+    &.pager-current {
+      display: none;
+    }
+    &.pager-next {
+      float: right;
+    }
+  }
+}
+
+#block-system-main {
+  form.search-form {
+    display: none;
+  }
+}
+fieldset.search-advanced {
+  display: none;
+}
+
+#psit-assess-your-idea-error-messages {
+  color: #ff0000;
+  font-size: 2em;
+}
