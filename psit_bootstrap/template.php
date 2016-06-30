@@ -50,7 +50,7 @@ function psit_bootstrap_js_alter(&$javascript) {
   }
   // Swap out jQuery to use an updated version of the library.
   if ($replace_jquery) {
-    $javascript['misc/jquery.js']['data'] = drupal_get_path('theme', 'ahw_bootstrap') . '/js/jquery.min.js';
+    $javascript['misc/jquery.js']['data'] = drupal_get_path('theme', 'psit_bootstrap') . '/js/jquery.min.js';
   }
 }
 
