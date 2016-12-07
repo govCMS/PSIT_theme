@@ -1,8 +1,14 @@
 <?php
+
 /**
  * @file
  * The primary PHP file for this theme.
  */
+
+/**
+ * Include WordPress helper function.
+ */
+include_once './' . drupal_get_path('theme', 'psit_bootstrap') . '/includes/wordpress.inc';
 
 /**
  * Implements theme_preprocess_html().
@@ -210,4 +216,127 @@ function psit_bootstrap_preprocess_node(&$variables, $hook) {
     $variables['submitted_by'] = t('Submitted by !username', array('!username' => $variables['name']));
     $variables['submitted_on'] = t('on !datetime', array('!datetime' => $variables['pubdate']));
   }
+}
+
+/**
+ * Preprocess the field.
+ *
+ * @param $vars
+ */
+function psit_bootstrap_preprocess_field(&$vars) {
+  $function = 'psit_bootstrap_preprocess_field__' . $vars['element']['#field_name'];
+  if (function_exists($function)) {
+    $function($vars);
+  }
+}
+
+/**
+ * Preprocess the body field.
+ *
+ * @param $vars
+ */
+function psit_bootstrap_preprocess_field__body(&$vars) {
+  // Process custom tokens.
+  if (!empty($vars['items'][0]['#markup'])) {
+    $content = $vars['items'][0]['#markup'];
+    $content = _govstrap_custom_token_process($content);
+    $vars['items'][0]['#markup'] = token_replace($content);
+  }
+}
+
+/**
+ * Scan custom token.
+ *
+ * @param $text
+ * @return mixed
+ */
+function _govstrap_custom_token_process($text) {
+  $tokens = _govstrap_custom_tokens();
+
+  if (FALSE === strpos($text, '[')) {
+    return $text;
+  }
+
+  // Find all registered tag names in $content.
+  preg_match_all('@\[([^<>&/\[\]\x00-\x20=]++)@', $text, $matches);
+  $tags = array_intersect(array_keys($tokens), $matches[1]);
+
+  // Return if no tag found.
+  if (empty($tags)) {
+    return $text;
+  }
+
+  $pattern = get_shortcode_regex($tags);
+
+  $text = preg_replace_callback("/$pattern/", '_govstrap_custom_token_callback', $text);
+
+  return $text;
+}
+
+/**
+ * Process custom token callback.
+ */
+function _govstrap_custom_token_callback($m) {
+  $tokens = _govstrap_custom_tokens();
+
+  // allow [[foo]] syntax for escaping a tag
+  if ($m[1] == '[' && $m[6] == ']') {
+    return substr($m[0], 1, -1);
+  }
+
+  $tag = $m[2];
+  $attr = shortcode_parse_atts($m[3]);
+
+  if (!is_callable($tokens[$tag])) {
+    return $m[0];
+  }
+
+  if (isset($m[5])) {
+    // enclosing tag - extra parameter
+    return $m[1] . call_user_func($tokens[$tag], $attr, $m[5], $tag) . $m[6];
+  }
+  else {
+    // self-closing tag
+    return $m[1] . call_user_func($tokens[$tag], $attr, NULL, $tag) . $m[6];
+  }
+}
+
+/**
+ * List of custom tokens.
+ *
+ * @return array
+ */
+function _govstrap_custom_tokens() {
+  return array(
+    'caption' => '_govstrap_custom_token_caption',
+    'gallery' => '_govstrap_custom_token_gallery',
+  );
+}
+
+/**
+ * WordPress caption token callback.
+ *
+ * @param $attr
+ * @param null $extras
+ * @param $tag
+ */
+function _govstrap_custom_token_caption($attr, $extras = NULL, $tag) {
+  $output = '<div class="caption">';
+  $output .= $extras;
+  $output .= "</div>";
+
+  return $output;
+}
+
+/**
+ * WordPress gallery token callback.
+ *
+ * @param $attr
+ * @param null $extras
+ * @param $tag
+ */
+function _govstrap_custom_token_gallery($attr, $extras = NULL, $tag) {
+  $output = '';
+
+  return $output;
 }
