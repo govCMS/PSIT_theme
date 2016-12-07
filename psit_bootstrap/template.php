@@ -321,9 +321,13 @@ function _govstrap_custom_tokens() {
  * @param $tag
  */
 function _govstrap_custom_token_caption($attr, $extras = NULL, $tag) {
-  $output = '<div class="caption">';
-  $output .= $extras;
-  $output .= "</div>";
+  $output = '';
+
+  if (strpos($extras, '<img') !== FALSE) {
+    $output = '<div class="caption">';
+    $output .= $extras;
+    $output .= "</div>";
+  }
 
   return $output;
 }
